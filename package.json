@@ -1,11 +1,11 @@
 {
   "name": "@chaingun/memory-adapter",
-  "version": "1.0.0",
-  "description": "In Memory graph adapter for chaingun",
+  "version": "0.0.1",
+  "description": "In Memory graph adapter for ChainGun",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/go1dfish/@chaingun/memory-adapter",
+  "repository": "https://github.com/chain-gun/chaingun-memory-adapter",
   "license": "MIT",
   "keywords": [],
   "scripts": {
@@ -50,7 +50,12 @@
   "engines": {
     "node": ">=8.9"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@chaingun/crdt": "^0.0.2",
+    "@chaingun/types": "^0.0.3",
+    "@types/ramda": "^0.26.34",
+    "ramda": "^0.26.1"
+  },
   "devDependencies": {
     "@bitjson/npm-scripts-info": "^1.0.0",
     "@bitjson/typedoc": "^0.15.0-0",
