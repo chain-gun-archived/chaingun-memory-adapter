@@ -1,11 +1,11 @@
-import { diffGunCRDT, mergeGraph } from '@chaingun/crdt';
-import { GunGraphAdapter, GunGraphData, GunNode } from '@chaingun/types';
-import { clone, curry } from 'ramda';
+import { diffGunCRDT, mergeGraph } from '@chaingun/crdt'
+import { GunGraphAdapter, GunGraphData, GunNode } from '@chaingun/types'
+import { clone, curry } from 'ramda'
 
 const DEFAULT_OPTS = {
   diffFn: diffGunCRDT,
   mergeFn: mergeGraph
-};
+}
 
 const getSync = curry(
   (
@@ -14,7 +14,7 @@ const getSync = curry(
     graph: GunGraphData,
     soul: string
   ): GunNode | null => clone(graph[soul]) || null
-);
+)
 
 const get = curry(
   (
@@ -22,7 +22,7 @@ const get = curry(
     graph: GunGraphData,
     soul: string
   ): Promise<GunNode | null> => Promise.resolve(getSync(opts, graph, soul))
-);
+)
 
 const putSync = curry(
   (
@@ -31,16 +31,16 @@ const putSync = curry(
     graph: GunGraphData,
     graphData: GunGraphData
   ) => {
-    const diff = diffFn(graphData, graph);
+    const diff = diffFn(graphData, graph)
 
     if (diff) {
       // tslint:disable-next-line: no-expression-statement
-      mergeFn(graph, diff, 'mutable');
+      mergeFn(graph, diff, 'mutable')
     }
 
-    return diff || null;
+    return diff || null
   }
-);
+)
 
 const put = curry(
   (
@@ -49,15 +49,15 @@ const put = curry(
     graphData: GunGraphData
   ): Promise<GunGraphData | null> =>
     Promise.resolve(putSync(opts, graph, graphData))
-);
+)
 
 export function createMemoryAdapter(opts = DEFAULT_OPTS): GunGraphAdapter {
-  const graph: GunGraphData = {};
+  const graph: GunGraphData = {}
 
   return {
     get: get(opts, graph),
     getSync: getSync(opts, graph),
     put: put(opts, graph),
     putSync: putSync(opts, graph)
-  };
+  }
 }

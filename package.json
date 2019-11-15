@@ -1,6 +1,6 @@
 {
   "name": "@chaingun/memory-adapter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "In Memory graph adapter for ChainGun",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -90,7 +90,8 @@
     }
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "semi": false
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
