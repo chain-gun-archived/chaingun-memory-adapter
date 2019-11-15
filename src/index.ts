@@ -27,15 +27,15 @@ const get = curry(
 const putSync = curry(
   (
     // tslint:disable-next-line: variable-name
-    _opts: typeof DEFAULT_OPTS,
+    { diffFn, mergeFn }: typeof DEFAULT_OPTS,
     graph: GunGraphData,
     graphData: GunGraphData
   ) => {
-    const diff = diffGunCRDT(graphData, graph);
+    const diff = diffFn(graphData, graph);
 
     if (diff) {
       // tslint:disable-next-line: no-expression-statement
-      mergeGraph(graph, diff, 'mutable');
+      mergeFn(graph, diff, 'mutable');
     }
 
     return diff || null;
